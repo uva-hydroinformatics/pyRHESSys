@@ -3,82 +3,46 @@ import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import json
+import pkg_resources
 
+OUTPUT = pkg_resources.resource_filename(
+        __name__, 'meta/output_variables.json')
+with open(OUTPUT, 'r') as f:
+    OUTPUT_VARIABLE = json.load(f)
 
 class Plotting:
 
 	def __init__(self, filepath):
 		self.filepath = filepath
-		self.ds = self.open_netcdf()
+		#self.start_date = PARAMETER_META['start_date']
+		#self.end_date = PARAMETER_META['end_date']
 
-	def open_netcdf(self):
-		filepath = self.filepath
-		output = xr.open_dataset(filepath)
-		return output
-
-	def ts_plot(self, variable, hru_num=0):
-		x = self.ds.variables['time']
-		y = self.ds.variables[variable][:,hru_num]
-		name = self.ds.variables[variable].attrs['long_name']
-		plt.figure(figsize=(15, 5))
-		plt.plot(x, y, color='grey', linestyle='solid', markersize=0)
-
-		# Get the current axis of the plot and
-		# set the x and y-axis labels
+	def ts_plot(self, data, sim_output_variable, sim_label, pre_trim: int=0, post_trim: int=-1):
+		self.filepath
+		# set output variables and variable description
+		y_axis = OUTPUT_VARIABLE[sim_output_variable]['description']+'('+OUTPUT_VARIABLE[sim_output_variable]['Units']+')'
+		# Plotting 
+		plt.figure(figsize=(17,10))
 		ax = plt.gca()
-		ax.set_ylabel(y.attrs['long_name'] + '(' + y.attrs['units'] + ')')
-		ax.set_xlabel('Date')
+		ax.plot(data["Date"][pre_trim:post_trim], data[sim_output_variable][pre_trim:post_trim], label=sim_label)
 		ax.grid(True)
+		ax.set_ylabel(y_axis, fontsize=18)
+		plt.xticks(fontsize=18)
+		plt.yticks(fontsize=18)
+		ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=10)
 
-		# Set the title
-		hru_num = hru_num + 1
-		ax.set_title("SUMMA %s Plot (hru=%s))" % (name, hru_num))
-
-	def ts_plot_layer(self, variable, layer_num, hru_num=0):
-		x = self.ds.variables['time']
-		y = self.ds.variables[variable][:,hru_num]
-		name = self.ds.variables[variable].attrs['long_name']
-
-		layer_variable = np.array(y)
-		col = layer_num-1
-		time = self.ds.dims['time']
-		time_arr = np.arange(time)
-		y1 = layer_variable[time_arr, col]
-
-		plt.figure(figsize=(15, 5))
-		plt.plot(x, y1, color='grey', linestyle='solid', markersize=0)
-
+	def ts_plot_obs(self, sim_data, sim_output_variable, sim_label, obs_data, obs_variable: str="", obs_label: str="", pre_trim: int=0, post_trim: int=-1, ):
+		self.filepath
+		# set output variables and variable description
+		y_axis = OUTPUT_VARIABLE[sim_output_variable]['description']+'('+OUTPUT_VARIABLE[sim_output_variable]['Units']+')'
+		# Plotting 
+		plt.figure(figsize=(17,10))
 		ax = plt.gca()
-		ax.set_ylabel(y.attrs['long_name'] + '(' + y.attrs['units'] + ')')
-		ax.set_xlabel('Date')
+		ax.plot(sim_data["Date"][pre_trim:post_trim], sim_data[sim_output_variable][pre_trim:post_trim], label=sim_label)
+		ax.plot(obs_data.index[pre_trim:post_trim], obs_data[obs_variable][pre_trim:post_trim], label=obs_label)
 		ax.grid(True)
-
-		# Set the title
-		hru_num = hru_num + 1
-		layer_num = layer_num + 1
-		ax.set_title("SUMMA %s Plot (layer_num=%s)(hru=%s))"  % (name, layer_num, hru_num))
-
-
-	def heatmap_plot(self, variable, layer_name, hru_num=0):
-		Plotting.heatmap_plot_selection(self, variable, layer_name, -1, -1, hru_num)
-
-
-	def heatmap_plot_selection(self, variable, layer_name, start_layer, end_layer, hru_num=1, ):
-		time_dims = self.ds.dims['time']
-		layer_dims = self.ds.dims[layer_name]
-		time = self.ds.variables['time'].data
-		test = self.ds.variables[variable].data[:,:,hru_num]
-		y = test.reshape(time_dims, 1, layer_dims)
-		m, n, r = y.shape
-		out_arr = np.column_stack((np.repeat(np.arange(m), n), y.reshape(m * n, -1)))
-		out_df = pd.DataFrame(out_arr, columns=list(range(0, layer_dims + 1)), index=time)
-		out_df = out_df[list(range(1, layer_dims + 1))]
-		out_df.replace(-9999.0, np.nan, inplace=True)
-		out_df_dropped = out_df.dropna(how="all", axis="columns")
-		out_df_dropped = out_df_dropped[list(range(1, len(out_df_dropped.columns)))]
-		if start_layer is not -1:
-			out_df_dropped = out_df_dropped[list(range(start_layer, min(len(out_df_dropped.columns), end_layer + 1)))]
-		plt.figure(figsize=(15, 5))
-		ax = plt.gca()
-		ax.set_ylabel('Layer')
-		sns.heatmap(out_df_dropped.T)
+		ax.set_ylabel(y_axis, fontsize=18)
+		plt.xticks(fontsize=18)
+		plt.yticks(fontsize=18)
+		ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=10)
