@@ -1,4 +1,4 @@
-# pyRHESSys
+# pyRHESSys (in progress)
 
 The pyRHESSys is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis of RHESSys model (The Regional Hydro-Ecologic Simulation System).
 
