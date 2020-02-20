@@ -63,5 +63,5 @@ Refereed document : RHESSys: Regional Hydro-Ecologic Simulation System—An Obje
   Distributed with a MIT license; see LICENSE.txt::
 
   Copyright (C) 2020 pyRHESSys Developers
-  YoungDon Choi <yc5ef@virginia.edu>
+  YoungDon Choi <choiyd1115@gmail.com or yc5ef@virginia.edu>
  
