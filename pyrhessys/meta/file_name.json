@@ -1,1 +1,1 @@
-{"tecfiles": "/tec_daily.txt", "world": "/world", "worldhdr": "/world.hdr", "flows": "/flow.txt", "prefix": "rhessysLOCAL"}
+{"tecfiles": "/tec_daily.txt", "world": "/worldfile", "world_hdr": "/worldfile.hdr", "flows_sub": "/subflow.txt", "flows_surf": "/surfflow.txt", "prefix": "rhessysLOCAL"}
