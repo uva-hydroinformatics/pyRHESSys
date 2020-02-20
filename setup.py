@@ -18,7 +18,8 @@ setup(name='pyRHESSys',
           'pandas',
           'hs_restclient==1.3.4',
           'distributed',
-          'fiona'
+          'fiona',
+          'hydroeval'
           ],
       include_package_data=True,
       test_suite='pyRHESSys.tests')
