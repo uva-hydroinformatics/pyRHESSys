@@ -17,36 +17,33 @@ The pyRHESSys is an Object-Oriented Python wrapper for the model input creation 
  
 ## Installation and Usage
 
-#### pyRHESSys requires Python 3.6 and following packages :
+#### pyRHESSys requires Python 3.7 and following packages :
 
- - xarray 0.10.0 : N-D labeled arrays and datasets in python
- - numpy 1.13.3 : the fundamental package for scientific computing with Python
- - matplotlib 2.1.1 : a Python 2D plotting library 
- - seaborn 0.8.1 : statistical data visualization 
- - jupyterthemes 0.18.3 : select and install a Jupyter notebook theme
- - hs-restclient 1.2.12 : HydroShare REST API python client library
- - ipyleaflet 0.7.1 : A jupyter widget for dynamic Leaflet maps 
- - Linux Environment (VirtualBox 5.2.8)
+ - xarray : N-D labeled arrays and datasets in python
+ - numpy : the fundamental package for scientific computing with Python
+ - matplotlib : a Python 2D plotting library 
+ - seaborn : statistical data visualization 
+ - jupyterthemes : select and install a Jupyter notebook theme
+ - hs-restclient : HydroShare REST API python client library
+ - geopandas
+ - shapely
+ - pandas
+ - distributed
+ - fiona
+ - hydroeval
      
 ## Download and Install pyRHESSys:
 
 **1.)**  Download pyRHESSys
 ```python
-~/Downloads$ git clone https://github.com/uva-hydroinformatics/pysumma.git
+~/Downloads$ git clone https://github.com/DavidChoi76/pyRHESSys.git
 ```
         
-**2.)**  change directory into pysumma folder same level with setup.py.
+**2.)**  change directory into pyRHESSys folder same level with setup.py.
 ```python
-~/Downloads/pysumma$ pip install .
+~/Downloads/pyRHESSys pip install .
 ```
 
-## Examples of unit test :
-
-**a unit test using unittest library**  
-
-```python
-~/Downloads/pysumma$ python setup.py test
-```
 ## Examples of manipulating and running pyRHESSys :
 
 Refereed paper : RHESSys: Regional Hydro-Ecologic Simulation System—An ObjectOriented Approach to Spatially Distributed Modeling of Carbon, Water, and Nutrient Cycling(http://fiesta.bren.ucsb.edu/~rhessys/setup/downloads/files/RHESSysTagueEA2004.pdf.
