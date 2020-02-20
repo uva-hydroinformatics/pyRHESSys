@@ -23,7 +23,7 @@ class Plotting:
 		# set output variables and variable description
 		y_axis = OUTPUT_VARIABLE[sim_output_variable]['description']+'('+OUTPUT_VARIABLE[sim_output_variable]['Units']+')'
 		# Plotting 
-		plt.figure(figsize=(17,10))
+		plt.figure(figsize=(17,7))
 		ax = plt.gca()
 		ax.plot(data["Date"][pre_trim:post_trim], data[sim_output_variable][pre_trim:post_trim], label=sim_label)
 		ax.grid(True)
@@ -37,7 +37,7 @@ class Plotting:
 		# set output variables and variable description
 		y_axis = OUTPUT_VARIABLE[sim_output_variable]['description']+'('+OUTPUT_VARIABLE[sim_output_variable]['Units']+')'
 		# Plotting 
-		plt.figure(figsize=(17,10))
+		plt.figure(figsize=(17,7))
 		ax = plt.gca()
 		ax.plot(sim_data["Date"][pre_trim:post_trim], sim_data[sim_output_variable][pre_trim:post_trim], label=sim_label)
 		ax.plot(obs_data.index[pre_trim:post_trim], obs_data[obs_variable][pre_trim:post_trim], label=obs_label)
