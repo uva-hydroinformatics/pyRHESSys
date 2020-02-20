@@ -25,12 +25,12 @@ pyRHESSys (Python-the Regional Hydro-Ecologic Simulation System) is an Object-Or
  - seaborn : statistical data visualization 
  - jupyterthemes : select and install a Jupyter notebook theme
  - hs-restclient : HydroShare REST API python client library
- - geopandas
- - shapely
  - pandas
- - distributed
- - fiona
- - hydroeval
+ - geopandas : an open source project to make working with geospatial data in python easier
+ - shapely : a BSD-licensed Python package for manipulation and analysis of planar geometric objects
+ - distributed :a lightweight library for distributed computing using Dask in Python
+ - fiona : Python library to help integrating geographic information systems with other computer systems
+ - hydroeval : an open-source evaluator for streamflow time series in Python
      
 ## Download and Install pyRHESSys (local computers):
 
