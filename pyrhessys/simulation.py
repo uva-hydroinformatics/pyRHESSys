@@ -5,9 +5,12 @@ import json
 import pkg_resources
 import subprocess
 import shlex
+import xarray as xr
 from pathlib import Path
 from typing import List
+
 from .plotting import Plotting
+from .input_configure import TimeSeries
 
 PARAMETER = pkg_resources.resource_filename(
         __name__, 'meta/parameter_meta.json')
@@ -25,18 +28,22 @@ class Simulation():
         """Initialize a new simulation object"""
         self.executable = executable
         self.path = path
-        self.clim = self.path + 'clim'
-        self.defs = self.path + 'defs'
-        self.flows = self.path + 'flows'
-        self.obs = self.path + 'obs'
-        self.output = self.path + 'output'
-        self.tecfiles = self.path + 'tecfiles'
-        self.worldfiles = self.path + 'worldfiles'
+        self.clim = self.path + '/clim'
+        self.defs = self.path + '/defs'
+        self.flows = self.path + '/flow'
+        self.obs = self.path + '/obs'
+        self.output = self.path + '/output'
+        self.tecfiles = self.path + '/tecfiles'
+        self.worldfiles = self.path + '/worldfiles'
         self.parameters = PARAMETER_META
         self.file_name = FILE_NAME
         self.path = path
         self.plotting = Plotting(self.obs)
+        self.input_ts = TimeSeries(path)
         self.status = 'Uninitialized'
+        self.stdout = None
+        self.stderr = None
+        self.process = None
         if initialize:
             self.initialize()
 
@@ -49,25 +56,27 @@ class Simulation():
      
     def _gen_rhessys_cmd(self, run_suffix, processes=1, progress='m'):
         self.run_suffix = run_suffix
-        rhessys_run_cmd = ''.join(['cd {}; ./{} -st {} -ed {}'.format(self.path[1:], self.parameters['version'], self.parameters['start_date'], self.parameters['end_date']),
+        rhessys_run_cmd = ''.join(['cd {}; ./{} -st {} -ed {}'.format(os.path.dirname(self.executable), self.parameters['version'], self.parameters['start_date'], self.parameters['end_date']),
                            ' -b -newcaprise -capr {} -gwtoriparian -capMax {}'.format(self.parameters['capr'], self.parameters['capMax']),
                            ' -slowDrain -leafDarkRespScalar {}'.format(self.parameters['leafDarkRespScalar']),
                            ' -frootRespScalar {} -StemWoodRespScalar {}'.format(self.parameters['frootRespScalar'],self.parameters['StemWoodRespScalar']),
-                           ' -t tecfiles{} -w worldfiles{} -whdr worldfiles{}'.format(self.file_name['tecfiles'],self.file_name['world'],self.file_name['worldhdr']),
-                           ' -r flows{} -rtz {}'.format(self.file_name['flows'], self.parameters['rtz']),
-                           ' -pre output/{} -s {} {} {} -sv {} {} -gw {} {}'.format(run_suffix, self.parameters['rtz'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['gw1'], self.parameters['gw2'])                          
+                           ' -t {}{} -w {}{} -whdr {}{}'.format(self.tecfiles, self.file_name['tecfiles'], self.worldfiles, self.file_name['world'], self.worldfiles, self.file_name['worldhdr']),
+                           ' -r {}{} -rtz {}'.format(self.flows, self.file_name['flows'], self.parameters['rtz']),
+                           ' -pre {}/{} -s {} {} {} -sv {} {} -gw {} {}'.format(self.output, run_suffix, self.parameters['rtz'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['gw1'], self.parameters['gw2'])                          
                           ])
+        print(rhessys_run_cmd)
         return rhessys_run_cmd
 
     def _run_local(self, run_suffix, processes=1, progress=None):
         """Start a local simulation"""
         run_cmd = self._gen_rhessys_cmd(run_suffix, processes, progress)
-        process = subprocess.Popen(run_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        output = process.communicate()[0].decode('utf-8')
-        print(output)
+        self.process = subprocess.Popen(run_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        #print(self.process.communicate())
+        #output = self.process.communicate()[0].decode('utf-8')
+        #print(output)
         self.status = 'Running'
 
-    def start(self, run_option,  run_suffix='pyrhessys_run', processes=1, progress=None):
+    def start(self, run_option,  run_suffix='rhessys_run', processes=1, progress=None):
         """Run a RHESSys simulation"""
         #TODO: Implement running on hydroshare here
         self.run_suffix = run_suffix
@@ -81,3 +90,43 @@ class Simulation():
 
     def run(self, run_option,  run_suffix='rhessys_run', processes=1, progress=None):
         self.start(run_option, run_suffix, processes, progress)
+        self.monitor()
+
+    def monitor(self):
+        # Simulation already run
+        if self.status in ['Error', 'Success']:
+            return self.status
+
+        if self.process is None:
+            raise RuntimeError('No simulation started! Use simulation.start '
+                               'or simulation.execute to begin a simulation!')
+
+        self.stdout, self.stderr = self.process.communicate()
+        if isinstance(self.stdout, bytes):
+            self.stderr = self.stderr.decode('utf-8', 'ignore')
+            self.stdout = self.stdout.decode('utf-8', 'ignore')
+
+        SUCCESS_MSG = 'Constructing basins'
+        print(self.stdout)
+        if SUCCESS_MSG not in self.stdout:
+            self.status = 'Error'
+        else:
+            self.status = 'Success'
+
+        try:
+            self._output = [xr.open_dataset(f) for f in self.get_output()]
+            if len(self._output) == 1:
+                self._output = self._output[0]
+        except Exception:
+            self._output = None
+
+        return self.status
+
+    def get_output(self) -> List[str]:
+        new_file_text = 'Created output file:'
+        out_files = []
+        for l in self.stdout.split('\n'):
+            if new_file_text in l:
+                out_files.append(
+                    l.split(';')[0].replace(new_file_text, '').strip())
+        return out_files

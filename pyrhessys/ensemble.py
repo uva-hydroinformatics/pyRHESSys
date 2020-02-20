@@ -91,7 +91,7 @@ class Ensemble(object):
         run into a single dataset.
         """
         for name_list in self.name_list:
-            plot_data = pd.read_csv(self.path + 'output/'+ name_list +'_basin.daily', delimiter=" ")
+            plot_data = pd.read_csv(self.path + '/output/'+ name_list +'_basin.daily', delimiter=" ")
             date_index = pd.date_range(self.parameters['start_date'][0:10], self.parameters['end_date'][0:10], freq='1D')
             plot_data.insert(loc=0, column='Date', value=date_index[:-1].values)
             plot_data.set_index('Date')
@@ -139,7 +139,6 @@ class Ensemble(object):
         Halt computation until submitted simulations are complete
         """
         simulations = self._client.gather(self.submissions)
-        
         for s in simulations:
             self.simulations[s.run_suffix] = s
 
