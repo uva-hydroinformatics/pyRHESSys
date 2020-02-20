@@ -1,4 +1,4 @@
-# pyRHESSys (in progress)
+# pyRHESSys
 
 The pyRHESSys is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis of RHESSys model (The Regional Hydro-Ecologic Simulation System).
 
@@ -8,11 +8,11 @@ The pyRHESSys is an Object-Oriented Python wrapper for the model input creation 
 ## The pyRHESSys is intended to provide
 
  - Get and set model input
- - Run RHESsys Model on local and Cloud 
+ - Run the RHESSys Model on local and cloud (especially, HydroShare and CyberGIS for water) 
  - Visualize RHESSys outputs
- - Use pyRHESSYS with jupyter notebook environment 
- - Interact Hydorshare to download RHESSys TestCases and upload the output of RHESSys 
- - Create model input using GRASS GIS (in progress)
+ - Use pyRHESSys with Jupyter Notebook environment 
+ - Interact with Hydorshare to download RHESSys test cases and upload the output of RHESSys
+ - Create model input using GRASS GIS and R library (in progress)
  - Automate model calibration or sensitivity analysis (Future work)
  
 ## Installation and Usage
@@ -39,7 +39,7 @@ The pyRHESSys is an Object-Oriented Python wrapper for the model input creation 
 ~/Downloads$ git clone https://github.com/DavidChoi76/pyRHESSys.git
 ```
         
-**2.)**  change directory into pyRHESSys folder same level with setup.py.
+**2.)**  Change the directory into the pyRHESSys folder same level with setup.py.
 ```python
 ~/Downloads/pyRHESSys pip install .
 ```
@@ -48,9 +48,9 @@ The pyRHESSys is an Object-Oriented Python wrapper for the model input creation 
 
 Refereed paper : RHESSys: Regional Hydro-Ecologic Simulation System—An ObjectOriented Approach to Spatially Distributed Modeling of Carbon, Water, and Nutrient Cycling (http://fiesta.bren.ucsb.edu/~rhessys/setup/downloads/files/RHESSysTagueEA2004.pdf.
 
-**(Test Case)** [RHESSys input data at Coweeta subbasin18 test](https://www.hydroshare.org/resource/6e34c42af35a4f51b1642de70ed6af95/) 
+**(Test Case)** [RHESSys input data of Coweeta subbasin18](https://www.hydroshare.org/resource/6e34c42af35a4f51b1642de70ed6af95/) 
 
-**(Jupyter Notebook)** [RHESSys Jupyter Notebook at Coweeta subbasin18](https://www.hydroshare.org/resource/9c2c5df86f1a48c0a57c1d142b4dc9a4/)
+**(Jupyter Notebook)** [Training Jupyter Notebook of RHESSys as an example of Coweeta subbasin18 using pyRHESSys](https://www.hydroshare.org/resource/9c2c5df86f1a48c0a57c1d142b4dc9a4/)
          
 ## Bugs
   Our issue tracker is at https://github.com/DavidChoi76/pyRHESSys/issues.
