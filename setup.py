@@ -19,6 +19,9 @@ setup(name='pyRHESSys',
           'hs_restclient==1.3.4',
           'distributed',
           'fiona',
+          'cartopy',
+          'geoviews',
+          'holoviews'
           ],
       include_package_data=True,
       test_suite='pyRHESSys.tests')
