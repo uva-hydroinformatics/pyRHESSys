@@ -6,17 +6,36 @@ import subprocess
 from hs_restclient import HydroShare
 
 
-def get_hs_resource(resource_id):
-    path = os.getcwd() + '/' + resource_id + '/' + resource_id + '/data/contents/'
+def get_hs_resource(resource_id, file_path):
     hs = HydroShare()
-    hs.getResource(resource_id, destination=os.getcwd(), unzip=True)
+    hs.getResource(resource_id, destination=file_path, unzip=True)
 
     # unpack the simulation archive and remove unncessary files
-    hs_resource = os.listdir(path)[0]
-    shutil.unpack_archive(path + hs_resource, extract_dir=os.getcwd())
-    cmd = "rm -rf " + resource_id
+    hs_resource_dir = os.path.join(file_path, resource_id, resource_id, 'data/contents/')
+    hs_resource = os.listdir(hs_resource_dir)
+    shutil.unpack_archive(hs_resource_dir+hs_resource[0], extract_dir=file_path)
+    cmd = "rm -rf " + os.path.join(file_path, resource_id)
     subprocess.run(cmd, shell=True)
-    return hs_resource.split('.')[0]
+
+def replace_word(file, current_string, new_string):
+    if not os.path.isfile(file):
+        print ("Error on replace_string, not a regular file: "+file)
+        sys.exit(1)
+
+    f1=open(file,'r').read()
+    f2=open(file,'w')
+    m=f1.replace(current_string,new_string)
+    f2.write(m)
+
+def complie(file_path):
+    # delete previous object file to compile RHESsys execution file again
+    delete_obj = 'cd ' + file_path +'/RHESSys5.20.source/rhessys/objects;rm -rf *.o'
+    subprocess.run(delete_obj, shell=True)
+    # compile RHESsys model (if returncode=0, compilation completed successfully)
+    complie_RHESSys = 'cd ' + file_path +'/RHESSys5.20.source/rhessys;make'
+    subprocess.run(complie_RHESSys, shell=True)
+    execution_file = file_path + '/RHESSys5.20.source/rhessys/rhessys5.20.0'
+    return execution_file
 
 def product_dict(**kwargs):
     """
