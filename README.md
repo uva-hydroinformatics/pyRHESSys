@@ -1,23 +1,23 @@
 # pyRHESSys
 
-The pyRHESSys is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis of RHESSys model (The Regional Hydro-Ecologic Simulation System).
+pyRHESSys (Python-the Regional Hydro-Ecologic Simulation System) is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis.
 
 * [RHESSys Website at GitHub ](https://github.com/RHESSys)
 * [RHESSys Website - Naomi Tague ](http://fiesta.bren.ucsb.edu/~rhessys/)
 
-## The pyRHESSys is intended to provide
+## pyRHESSys is intended to
 
  - Get and set model input
- - Run the RHESSys Model on local and cloud (especially, HydroShare and CyberGIS for water) 
+ - Run the RHESSys Model on local computers and scientific cyberinfrastructures (especially, CUAHSI JupyterHub and CyberGIS for water) 
  - Visualize RHESSys outputs
- - Use pyRHESSys with Jupyter Notebook environment 
- - Interact with Hydorshare to download RHESSys test cases and upload the output of RHESSys
+ - Be integrated with pyRHESSys with Jupyter Notebook environment 
+ - Interact with Hydorshare to download RHESSys test cases and upload RHESSys outputs
  - Create model input using GRASS GIS and R library (in progress)
  - Automate model calibration or sensitivity analysis (Future work)
  
 ## Installation and Usage
 
-#### pyRHESSys requires Python 3.7 and following packages :
+#### pyRHESSys requires Python 3.7 and the following packages :
 
  - xarray : N-D labeled arrays and datasets in python
  - numpy : the fundamental package for scientific computing with Python
@@ -32,25 +32,25 @@ The pyRHESSys is an Object-Oriented Python wrapper for the model input creation 
  - fiona
  - hydroeval
      
-## Download and Install pyRHESSys:
+## Download and Install pyRHESSys (local computers):
 
 **1.)**  Download pyRHESSys
 ```python
 ~/Downloads$ git clone https://github.com/DavidChoi76/pyRHESSys.git
 ```
         
-**2.)**  Change the directory into the pyRHESSys folder same level with setup.py.
+**2.)**  Go to the pyRHESSys directory, where you will see the file setup.py, and use the following command to install pyRHESSys.
 ```python
 ~/Downloads/pyRHESSys pip install .
 ```
 
 ## Examples of manipulating and running pyRHESSys :
 
-Refereed paper : RHESSys: Regional Hydro-Ecologic Simulation System—An ObjectOriented Approach to Spatially Distributed Modeling of Carbon, Water, and Nutrient Cycling (http://fiesta.bren.ucsb.edu/~rhessys/setup/downloads/files/RHESSysTagueEA2004.pdf.
+Refereed document : RHESSys: Regional Hydro-Ecologic Simulation System—An ObjectOriented Approach to Spatially Distributed Modeling of Carbon, Water, and Nutrient Cycling (http://fiesta.bren.ucsb.edu/~rhessys/setup/downloads/files/RHESSysTagueEA2004.pdf.
 
 **(Test Case)** [RHESSys input data of Coweeta subbasin18](https://www.hydroshare.org/resource/6e34c42af35a4f51b1642de70ed6af95/) 
 
-**(Jupyter Notebook)** [Training Jupyter Notebook of RHESSys as an example of Coweeta subbasin18 using pyRHESSys](https://www.hydroshare.org/resource/9c2c5df86f1a48c0a57c1d142b4dc9a4/)
+**(Jupyter Notebook)** [Jupyter Notebook for RHESSys to train pyRHESSys, Example: Coweeta subbasin18](https://www.hydroshare.org/resource/9c2c5df86f1a48c0a57c1d142b4dc9a4/)
          
 ## Bugs
   Our issue tracker is at https://github.com/DavidChoi76/pyRHESSys/issues.
