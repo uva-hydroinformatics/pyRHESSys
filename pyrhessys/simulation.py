@@ -30,7 +30,7 @@ class Simulation():
         self.path = path
         self.clim = self.path + '/clim'
         self.defs = self.path + '/defs'
-        self.flows = self.path + '/flow'
+        self.flows = self.path + '/flows'
         self.obs = self.path + '/obs'
         self.output = self.path + '/output'
         self.tecfiles = self.path + '/tecfiles'
@@ -57,12 +57,11 @@ class Simulation():
     def _gen_rhessys_cmd(self, run_suffix, processes=1, progress='m'):
         self.run_suffix = run_suffix
         rhessys_run_cmd = ''.join(['cd {}; ./{} -st {} -ed {}'.format(os.path.dirname(self.executable), self.parameters['version'], self.parameters['start_date'], self.parameters['end_date']),
-                           ' -b -newcaprise -capr {} -gwtoriparian -capMax {}'.format(self.parameters['capr'], self.parameters['capMax']),
-                           ' -slowDrain -leafDarkRespScalar {}'.format(self.parameters['leafDarkRespScalar']),
-                           ' -frootRespScalar {} -StemWoodRespScalar {}'.format(self.parameters['frootRespScalar'],self.parameters['StemWoodRespScalar']),
-                           ' -t {}{} -w {}{} -whdr {}{}'.format(self.tecfiles, self.file_name['tecfiles'], self.worldfiles, self.file_name['world'], self.worldfiles, self.file_name['worldhdr']),
-                           ' -r {}{} -rtz {}'.format(self.flows, self.file_name['flows'], self.parameters['rtz']),
-                           ' -pre {}/{} -s {} {} {} -sv {} {} -gw {} {}'.format(self.output, run_suffix, self.parameters['rtz'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['gw1'], self.parameters['gw2'])                          
+                           ' -b -gwtoriparian -t {}{}'.format(self.tecfiles, self.file_name['tecfiles']),
+                           ' -w {}{} -whdr {}{}'.format(self.worldfiles, self.file_name['world'], self.worldfiles, self.file_name['world_hdr']),
+                           ' -r {}{} {}{}'.format(self.flows, self.file_name['flows_sub'], self.flows, self.file_name['flows_surf']),
+                           ' -pre {}/{} -gw {} {} -s {} {} {}'.format(self.output, run_suffix, self.parameters['gw1'], self.parameters['gw2'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3']),     
+                           ' -snowEs {} -snowTs {} -sv {} {} -svalt {} {}'.format(self.parameters['snowEs'], self.parameters['snowTs'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['svalt1'], self.parameters['svalt2'])                          
                           ])
         print(rhessys_run_cmd)
         return rhessys_run_cmd
