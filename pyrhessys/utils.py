@@ -17,7 +17,7 @@ def get_hs_resource(resource_id, file_path):
     cmd = "rm -rf " + os.path.join(file_path, resource_id)
     subprocess.run(cmd, shell=True)
 
-def replace_word(file, current_string, new_string):
+def replace_string(file, current_string, new_string):
     if not os.path.isfile(file):
         print ("Error on replace_string, not a regular file: "+file)
         sys.exit(1)
