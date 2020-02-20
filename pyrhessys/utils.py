@@ -27,14 +27,26 @@ def replace_string(file, current_string, new_string):
     m=f1.replace(current_string,new_string)
     f2.write(m)
 
-def complie(file_path):
-    # delete previous object file to compile RHESsys execution file again
-    delete_obj = 'cd ' + file_path +'/RHESSys5.20.source/rhessys/objects;rm -rf *.o'
-    subprocess.run(delete_obj, shell=True)
-    # compile RHESsys model (if returncode=0, compilation completed successfully)
-    complie_RHESSys = 'cd ' + file_path +'/RHESSys5.20.source/rhessys;make'
-    subprocess.run(complie_RHESSys, shell=True)
-    execution_file = file_path + '/RHESSys5.20.source/rhessys/rhessys5.20.0'
+def complie(file_path, version_option):
+    if version_option == "5.20":
+        # delete previous object file to compile RHESsys execution file again
+        delete_obj = 'cd ' + file_path +'/RHESSys5.20.source/rhessys/objects;rm -rf *.o'
+        subprocess.run(delete_obj, shell=True)
+        # compile RHESsys model (if returncode=0, compilation completed successfully)
+        complie_RHESSys = 'cd ' + file_path +'/RHESSys5.20.source/rhessys;make'
+        subprocess.run(complie_RHESSys, shell=True)
+        execution_file = file_path + '/RHESSys5.20.source/rhessys/rhessys5.20.0'
+
+    elif version_option == "5.20.0.develop":
+        complie_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;make'
+        subprocess.run(complie_RHESSys, shell=True)
+        exe_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;chmod +rwx rhessys5.20.0.develop'
+        subprocess.run(exe_RHESSys, shell=True)
+        execution_file = file_path + '/RHESSysEastCoast/rhessys5.20.0.develop'
+
+    else:
+        print("Select '5.20' or '5.20.0.develop' for version option")
+
     return execution_file
 
 def product_dict(**kwargs):
