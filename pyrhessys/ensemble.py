@@ -17,8 +17,6 @@ PARAMETER = pkg_resources.resource_filename(
 with open(PARAMETER, 'r') as f:
     PARAMETER_META = json.load(f)
 
-sim_output = []
-
 class Ensemble(object):
     '''
     Ensembles represent an multiple SUMMA configurations based on
@@ -90,8 +88,9 @@ class Ensemble(object):
         Open and merge all of the output datasets from the ensemble
         run into a single dataset.
         """
-        for name_list in self.name_list:
-            plot_data = pd.read_csv(self.path + '/output/'+ name_list +'_basin.daily', delimiter=" ")
+        sim_output = []
+        for lists in self.name_list:
+            plot_data = pd.read_csv(self.path + '/output/'+ lists +'_basin.daily', delimiter=" ")
             date_index = pd.date_range(self.parameters['start_date'][0:10], self.parameters['end_date'][0:10], freq='1D')
             plot_data.insert(loc=0, column='Date', value=date_index[:-1].values)
             plot_data.set_index('Date')
