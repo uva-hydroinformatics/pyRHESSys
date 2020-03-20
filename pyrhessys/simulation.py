@@ -63,8 +63,17 @@ class Simulation():
                            ' -pre {}/{} -gw {} {} -s {} {} {}'.format(self.output, run_suffix, self.parameters['gw1'], self.parameters['gw2'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3']),     
                            ' -snowEs {} -snowTs {} -sv {} {} -svalt {} {}'.format(self.parameters['snowEs'], self.parameters['snowTs'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['svalt1'], self.parameters['svalt2'])                          
                           ])
-        print(rhessys_run_cmd)
-        return rhessys_run_cmd
+
+        if self.parameters['locationid'] == "0" :
+            patch_cmd = ""
+        elif self.parameters['locationid'] == "1" :
+            patch_cmd = " -p"
+        elif self.parameters['locationid'] == "2" :
+            patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
+        else:
+            print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
+        print(rhessys_run_cmd + patch_cmd)
+        return rhessys_run_cmd + patch_cmd
 
     def _run_local(self, run_suffix, processes=1, progress=None):
         """Start a local simulation"""
