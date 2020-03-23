@@ -1,5 +1,9 @@
 # pyRHESSys
 
+| pyRHESSys Links & Badges              |                                                                             |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pyRHESSys Documentation      | [![Documentation Status](http://readthedocs.org/projects/pyrhessys/badge/?version=latest)](http://pyrhessys.readthedocs.io/en/latest/?badge=latest) |
+
 pyRHESSys (Python-the Regional Hydro-Ecologic Simulation System) is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis.
 
 * [RHESSys Website at GitHub ](https://github.com/RHESSys)
