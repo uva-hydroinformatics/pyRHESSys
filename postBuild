@@ -1,1 +1,3 @@
+source activate pyRHESSys
+python -m ipykernel install --user --name pyRHESSys
 jupyter labextension install @pyviz/jupyterlab_pyviz
