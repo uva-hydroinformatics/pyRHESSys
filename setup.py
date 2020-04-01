@@ -9,7 +9,7 @@ setup(name='pyRHESSys',
       license='MIT',
       packages=find_packages(),
       install_requires=[
-          'numpy>=1.11.2',  
+          'numpy>=1.15',  
           'xarray>0.10.9',
           'pandas',
           'netcdf4>=1.2.5',
