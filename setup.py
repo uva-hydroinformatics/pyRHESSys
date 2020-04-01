@@ -23,8 +23,6 @@ setup(name='pyRHESSys',
           'dask-jobqueue',
           'geopandas',
           'holoviews',
-          #'bokeh',
-          #'cartopy',
           'geoviews',
           'hydroeval',
           'imageio'
