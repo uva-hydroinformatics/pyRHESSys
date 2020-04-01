@@ -22,8 +22,6 @@ setup(name='pyRHESSys',
           'toolz',
           'dask-jobqueue',
           'geopandas',
-          'holoviews',
-          'geoviews',
           'hydroeval',
           'imageio'
           ],
