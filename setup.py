@@ -24,7 +24,7 @@ setup(name='pyRHESSys',
           'geopandas',
           'holoviews',
           'bokeh==1.4.0',
-          'cartopy',
+          #'cartopy',
           'geoviews',
           'hydroeval',
           'imageio'
