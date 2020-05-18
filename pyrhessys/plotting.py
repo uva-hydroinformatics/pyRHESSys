@@ -1,10 +1,10 @@
-import seaborn as sns
 import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import json
 import pkg_resources
+import seaborn as sns
 
 OUTPUT = pkg_resources.resource_filename(
         __name__, 'meta/output_variables.json')
