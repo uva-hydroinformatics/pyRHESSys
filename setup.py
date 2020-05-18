@@ -27,7 +27,8 @@ setup(name='pyRHESSys',
           'cartopy',
           'geoviews',
           'hydroeval',
-          'imageio'
+          'imageio',
+          'seaborn'
           ],
       include_package_data=True,
       test_suite='pyRHESSys.tests')
