@@ -20,7 +20,7 @@ FILE = pkg_resources.resource_filename(
         __name__, 'meta/file_name.json')
 with open(FILE, 'r') as f:
     FILE_NAME = json.load(f)
-SHELL_R = os.listdir('shell_R')
+SHELL_R = pkg_resource.resource_listdir('shell_R')
 
 class Simulation():
     """The simulation object provides a wrapper for RHESSys simulations"""
