@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-#import seaborn as sns
->>>>>>> d28311099674623d52b5fdc41d0e6e7abb364d7f
 import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
