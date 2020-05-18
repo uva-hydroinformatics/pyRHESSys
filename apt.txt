@@ -1,3 +1,0 @@
-wget
-software-properties-common
-ca-certificates
