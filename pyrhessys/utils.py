@@ -27,25 +27,16 @@ def replace_string(file, current_string, new_string):
     m=f1.replace(current_string,new_string)
     f2.write(m)
 
-def complie(file_path, version_option):
-    if version_option == "5.20":
-        # delete previous object file to compile RHESsys execution file again
-        delete_obj = 'cd ' + file_path +'/RHESSys5.20.source/rhessys/objects;rm -rf *.o'
-        subprocess.run(delete_obj, shell=True)
-        # compile RHESsys model (if returncode=0, compilation completed successfully)
-        complie_RHESSys = 'cd ' + file_path +'/RHESSys5.20.source/rhessys;make'
-        subprocess.run(complie_RHESSys, shell=True)
-        execution_file = file_path + '/RHESSys5.20.source/rhessys/rhessys5.20.0'
-
-    elif version_option == "5.20.0.develop":
+def complie(file_path, version_option="rhessys5.20.0.develop"):
+    if version_option:
         complie_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;make'
         subprocess.run(complie_RHESSys, shell=True)
-        exe_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;chmod +rwx rhessys5.20.0.develop'
+        exe_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;chmod +rwx ' + version_option
         subprocess.run(exe_RHESSys, shell=True)
-        execution_file = file_path + '/RHESSysEastCoast/rhessys5.20.0.develop'
+        execution_file = file_path + '/RHESSysEastCoast/' + version_option
 
     else:
-        print("Select '5.20' or '5.20.0.develop' for version option")
+        print("You have to set the exact RHESSys version")
 
     return execution_file
 
