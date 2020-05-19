@@ -11,7 +11,6 @@ from typing import List
 
 from .plotting import Plotting
 from .input_configure import TimeSeries
-import .read_code as code
 
 PARAMETER = pkg_resources.resource_filename(
         __name__, 'meta/parameter_meta.json')
