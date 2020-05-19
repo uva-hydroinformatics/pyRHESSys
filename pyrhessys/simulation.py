@@ -24,6 +24,7 @@ SHELL_R = pkg_resources.resource_listdir(
         __name__, 'shell_R/')
 code =[]
 for file in SHELL_R:
+    print(file)
     with open(file, 'r') as f:
         code.append(f.read())
 
