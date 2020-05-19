@@ -11,6 +11,7 @@ from typing import List
 
 from .plotting import Plotting
 from .input_configure import TimeSeries
+import read_code as code
 
 PARAMETER = pkg_resources.resource_filename(
         __name__, 'meta/parameter_meta.json')
@@ -20,12 +21,6 @@ FILE = pkg_resources.resource_filename(
         __name__, 'meta/file_name.json')
 with open(FILE, 'r') as f:
     FILE_NAME = json.load(f)
-SHELL_R = pkg_resources.resource_listdir(
-        __name__, 'shell_R/')
-code =[]
-for file in SHELL_R:
-    with open(os.getcwd()+"/shell_R/"+file, 'r') as f:
-        code.append(f.read())
 
 class Simulation():
     """The simulation object provides a wrapper for RHESSys simulations"""
@@ -42,8 +37,8 @@ class Simulation():
         self.tecfiles = self.path + '/tecfiles'
         self.worldfiles = self.path + '/worldfiles'
         self.parameters = PARAMETER_META
-        self.code = SHELL_R
         self.file_name = FILE_NAME
+        self.code = code
         self.path = path
         self.plotting = Plotting(self.obs)
         self.input_ts = TimeSeries(path)
