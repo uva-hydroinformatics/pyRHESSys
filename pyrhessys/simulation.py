@@ -22,6 +22,10 @@ with open(FILE, 'r') as f:
     FILE_NAME = json.load(f)
 SHELL_R = pkg_resources.resource_listdir(
         __name__, 'shell_R/')
+code =[]
+for file in SHELL_R:
+    with open("source_code/"+file, 'r') as f:
+        code.append(f.read())
 
 class Simulation():
     """The simulation object provides a wrapper for RHESSys simulations"""
