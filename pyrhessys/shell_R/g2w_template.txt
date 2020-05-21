@@ -1,9 +1,9 @@
-projdir /home/jovyan/work/rhessys/coweeta_sub18
-outputWorldfile /home/jovyan/work/rhessys/coweeta_sub18/model/worldfiles/worldfile.csv 1
-outputWorldfileHDR /home/jovyan/work/rhessys/coweeta_sub18/model/worldfiles/worldfile.hdr 1
-outputDefs /home/jovyan/work/rhessys/coweeta_sub18/model/defs 1
-outputSurfFlow /home/jovyan/work/rhessys/coweeta_sub18/model/flows/surfflow.txt 1
-outputSubFlow /home/jovyan/work/rhessys/coweeta_sub18/model/flows/subflow.txt 1
+projdir {DIR}
+outputWorldfile {DIR}/model/worldfiles/worldfile.csv 1
+outputWorldfileHDR {DIR}/model/worldfiles/worldfile.hdr 1
+outputDefs {DIR}/model/defs 1
+outputSurfFlow {DIR}/model/flows/surfflow.txt 1
+outputSubFlow {DIR}/model/flows/subflow.txt 1
 vegCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/vegCollection.csv"
 soilCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/soilCollection.csv"
 lulcCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/lulcCollectionEC.csv"
