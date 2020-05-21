@@ -49,6 +49,8 @@ def product_dict(**kwargs):
     for instance in itertools.product(*vals):
         yield dict(zip(keys, instance))
 
+def netcdf_output()
+
 
 class ChainDict(dict):
     """
