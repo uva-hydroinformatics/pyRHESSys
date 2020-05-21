@@ -97,17 +97,6 @@ class Plotting:
 		plt.show()
 
 	#def daily_patch_map(netcdf, variable, timestep):
-	    """
-    	Create a map for a variable at a given timestep
-    	Warning: This function is state dependent! 
-    
-   		Params:
-        	var: the variable of interest
-        	timestep: the timestep to plot at
-    
-    	Returns:
-        	poly: A geoviews "shape" plot with the desired data
-    	"""
     	# Convert the data from an xarray dataset to a pandas dataframe 
     	# This is necessary for geoviews to be able to plot it
 	#	out_df = netcdf[variable].sel(time=timestep).to_dataframe()
