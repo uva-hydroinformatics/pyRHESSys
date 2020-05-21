@@ -37,7 +37,6 @@ class Simulation():
         self.worldfiles = self.path + '/worldfiles'
         self.parameters = PARAMETER_META
         self.file_name = FILE_NAME
-        self.code = code
         self.path = path
         self.plotting = Plotting(self.obs)
         self.input_ts = TimeSeries(path)
