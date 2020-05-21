@@ -4,6 +4,9 @@ import shutil
 from urllib.request import urlretrieve
 import subprocess
 from hs_restclient import HydroShare
+import pandas as pd
+import xarray as xr
+import numpy as np
 
 
 def get_hs_resource(resource_id, file_path):
@@ -27,25 +30,16 @@ def replace_string(file, current_string, new_string):
     m=f1.replace(current_string,new_string)
     f2.write(m)
 
-def complie(file_path, version_option):
-    if version_option == "5.20":
-        # delete previous object file to compile RHESsys execution file again
-        delete_obj = 'cd ' + file_path +'/RHESSys5.20.source/rhessys/objects;rm -rf *.o'
-        subprocess.run(delete_obj, shell=True)
-        # compile RHESsys model (if returncode=0, compilation completed successfully)
-        complie_RHESSys = 'cd ' + file_path +'/RHESSys5.20.source/rhessys;make'
-        subprocess.run(complie_RHESSys, shell=True)
-        execution_file = file_path + '/RHESSys5.20.source/rhessys/rhessys5.20.0'
-
-    elif version_option == "5.20.0.develop":
+def complie(file_path, version_option="rhessys5.20.0.develop"):
+    if version_option:
         complie_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;make'
         subprocess.run(complie_RHESSys, shell=True)
-        exe_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;chmod +rwx rhessys5.20.0.develop'
+        exe_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;chmod +rwx ' + version_option
         subprocess.run(exe_RHESSys, shell=True)
-        execution_file = file_path + '/RHESSysEastCoast/rhessys5.20.0.develop'
+        execution_file = file_path + '/RHESSysEastCoast/' + version_option
 
     else:
-        print("Select '5.20' or '5.20.0.develop' for version option")
+        print("You have to set the exact RHESSys version")
 
     return execution_file
 
@@ -57,6 +51,30 @@ def product_dict(**kwargs):
     keys, vals = kwargs.keys(), kwargs.values()
     for instance in itertools.product(*vals):
         yield dict(zip(keys, instance))
+
+def netcdf_output(model_output, start_date, end_date, patch, shapes_df, output_name):
+    # set the value of dimension and coordinate for NetCDF
+    dates = pd.date_range(start_date, end_date)
+    shape = (len(dates), len(shapes_df))
+    dims = ('time', patch, )
+    patchs = shapes_df['gridcode'].tolist()
+    coords = {'time': dates, patch: patchs}     
+
+    # Create the data structure of RHESSys mode output
+    cw18 = xr.Dataset(coords=coords)
+    # Check All RHESSys output variables except date variables
+    all_var_col = model_output.columns.values
+    var_col = all_var_col[4:]
+    for varname in var_col:
+        cw18[varname] = xr.DataArray(data=np.full(shape, np.nan),
+                                     coords=coords, dims=dims,
+                                     name=varname)
+        # get values of variable and insert new multi-array model output considering patch and time dimension into xarray Dataset
+        single_model_output = model_output[varname].values
+        multi_array_model_output = single_model_output.reshape(cw18.dims['time'], cw18.dims[patch])
+        cw18[varname].values[:, :] = multi_array_model_output
+    # create new NetCDF file of RHESSys output at Coweeta subbasin 18
+    cw18.to_netcdf(output_name)    
 
 
 class ChainDict(dict):

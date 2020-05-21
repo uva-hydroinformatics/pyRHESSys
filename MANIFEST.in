@@ -1,1 +1,2 @@
 include pyrhessys/meta/*
+include pyrhessys/shell_R/*
