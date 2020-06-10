@@ -95,7 +95,6 @@ class Plotting:
 		ax.grid('on')
 		fig.legend(labels=name_list, bbox_to_anchor=(0.82, 0.82))
 		plt.show()
-
 	#def daily_patch_map(netcdf, variable, timestep):
     	# Convert the data from an xarray dataset to a pandas dataframe 
     	# This is necessary for geoviews to be able to plot it
