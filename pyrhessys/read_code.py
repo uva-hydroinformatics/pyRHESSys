@@ -24,9 +24,11 @@ G2W_CF_RHESSYSEC_SOIL_FULLEXTRACTION = pkg_resources.resource_filename(
         __name__, 'shell_R/g2w_cf_RHESSysEC_soil_fullextraction.R')
 LIB_RHESSYS_WRITETABLE2WORLD_SOIL_FULLEXTRACTION = pkg_resources.resource_filename(
         __name__, 'shell_R/LIB_RHESSys_writeTable2World_soil_fullextraction.R')
-LULC_30M_NLCD_REMOTE_FOREST_CATCHMENT = pkg_resources.resource_filename(
+LULC_NLCD_REMOTE_FOREST_CATCHMENT = pkg_resources.resource_filename(
         __name__, 'shell_R/lulc_30m_NLCD_remote_forest_catchment.csv')       
 FOREST_COMMUNITY = pkg_resources.resource_filename(
         __name__, 'shell_R/forest_community.sh')     
 G2W_TEMPLATE = pkg_resources.resource_filename(
-        __name__, 'shell_R/g2w_template.txt')         
+        __name__, 'shell_R/g2w_template.txt')   
+LULC_NLCD_URBAN_CATCHMENT = pkg_resources.resource_filename(
+        __name__, 'lulc_30m_NLCD_urban_catchment.csv')    
