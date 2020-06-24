@@ -138,3 +138,63 @@ class Simulation():
                 out_files.append(
                     l.split(';')[0].replace(new_file_text, '').strip())
         return out_files
+
+    def parallel_job(self, executable, start_date, end_date, config, path):
+
+        list_keys = [k for k in config]
+        p = list_keys[0].split("++")[1:len(list_keys[0].split("++")) - 1]
+
+        parameter = []
+        name = []
+
+        for i in list_keys:
+            name.append(i)
+
+        for i, value in enumerate(list_keys):
+            parameter.append(list_keys[i].split("++")[1:len(list_keys[i].split("++")) - 1])
+
+        parallel_run_cmd1 = []
+        for i, k in enumerate(list_keys):
+            rhessys_run_cmd = ''.join(['cd {}; ./{} -st {} -ed {}'.format(os.path.dirname(self.executable), self.parameters['version'], self.parameters['start_date'], self.parameters['end_date']),
+                           ' -b -gwtoriparian -t {}{}'.format(self.tecfiles, self.file_name['tecfiles']),
+                           ' -w {}{} -whdr {}{}'.format(self.worldfiles, self.file_name['world'], self.worldfiles, self.file_name['world_hdr']),
+                           ' -r {}{} {}{}'.format(self.flows, self.file_name['flows_sub'], self.flows, self.file_name['flows_surf']),
+                           ' -pre {}/{}'.format(self.output, name[i])  
+                          ])
+            parallel_run_cmd1.append(rhessys_run_cmd)
+        parallel_run_cmd2 = []
+        my_dict = {'gw1': self.parameters['gw1'], 'gw2': self.parameters['gw2'], 's1': self.parameters['s1'], 's2': self.parameters['s2'], 
+                's3': self.parameters['s3'], 'snowEs': self.parameters['snowEs'], 'snowTs': self.parameters['snowTs'], 
+                'sv1': self.parameters['sv1'], 'sv2': self.parameters['sv2'], 'svalt1': self.parameters['gw1'], 'svalt2': self.parameters['gw1']}
+
+        for i, k in enumerate(parameter):
+            for j in parameter[i]:
+                keys = j.split("=")[0]
+                values = j.split("=")[1]
+                my_dict[keys] = values
+
+            par = ' -gw ' + str(my_dict['gw1']) + ' ' + str(my_dict['gw2']) + ' ' + ' -s ' + str(my_dict['s1']) + ' ' + str(my_dict['s2']) + ' ' + str(my_dict['s3'])  \
+                + ' ' +' -snowEs ' + str(my_dict['snowEs']) + ' ' +' -snowTs '+ str(my_dict['snowTs']) + ' ' + ' -sv ' \
+                + str(my_dict['sv1']) + ' ' + str(my_dict['sv2']) + ' -svalt ' + str(my_dict['svalt1']) + ' ' + str(my_dict['svalt2'])
+                                                                                  
+            parallel_run_cmd2.append(par)  
+
+            if self.parameters['locationid'] == "0" :
+                patch_cmd = ""
+            elif self.parameters['locationid'] == "1" :
+                patch_cmd = " -p"
+            elif self.parameters['locationid'] == "2" :
+                patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
+            else:
+                print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
+
+        for i, k in enumerate(list_keys):
+            cmd = parallel_run_cmd1[i] + ' ' + parallel_run_cmd2[i] + ' ' + patch_cmd 
+            print(cmd)
+
+            file_name = path + "/" + "input_"+str(i)+".txt"
+            parallel_cmd = open(file_name, "w") 
+            parallel_cmd.write(cmd)
+            parallel_cmd.close()
+        
+        return name
