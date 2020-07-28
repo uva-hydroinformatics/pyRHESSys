@@ -31,4 +31,9 @@ FOREST_COMMUNITY = pkg_resources.resource_filename(
 G2W_TEMPLATE = pkg_resources.resource_filename(
         __name__, 'shell_R/g2w_template.txt')   
 LULC_NLCD_URBAN_CATCHMENT = pkg_resources.resource_filename(
-        __name__, 'lulc_30m_NLCD_urban_catchment.csv')    
+        __name__, 'lulc_30m_NLCD_urban_catchment.csv') 
+G2W_TEMPLATE1 = pkg_resources.resource_filename(
+        __name__, 'shell_R/g2w_template1.txt') 
+LANDUSE = pkg_resources.resource_filename(
+        __name__, 'shell_R/landuse.sh') 		
+		

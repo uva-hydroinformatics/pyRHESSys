@@ -24,7 +24,11 @@ setup(name='pyRHESSys',
           'geopandas',
           'hydroeval',
           'imageio',
-          'seaborn'
+          'seaborn',
+          'fiona',
+          'cartopy',
+          'shapely',
+          'geoviews'
           ],
       include_package_data=True,
       test_suite='pyRHESSys.tests')
