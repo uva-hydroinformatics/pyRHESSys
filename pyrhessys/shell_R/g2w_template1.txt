@@ -1,0 +1,65 @@
+projdir /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents
+outputWorldfile /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/worldfiles/worldfile.csv 1
+outputWorldfileHDR /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/worldfiles/worldfile.hdr 1
+outputDefs /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/defs 1
+outputSurfFlow /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/flows/surfflow.txt 1
+outputSubFlow /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/flows/subflow.txt 1
+vegCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/vegCollection.csv"
+soilCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/soilCollection.csv"
+lulcCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/lulcCollectionEC.csv"
+stationID 101
+stationFile clim/cwt.base
+basinMap basin
+hillslopeMap hill
+zoneMAP zone_cluster
+patchMAP patch
+soiltexture soil_texture
+soilidMAP soil_ssurgo
+soilksat0 soil_ksat_0
+soilksatdecay soil_ksat_decay
+soilpor0 soil_por_0
+soilpordecay soil_por_decay
+soilsand soil_sand
+soilsilt soil_silt
+soilclay soil_clay
+soilbulkdensity soil_bulkdensity
+soilparticledensity soil_particledensity
+soilsoildepth soil_soildepth
+soilactivedepth soil_activedepth
+soilmaxrootdepth soil_maxrootdepth
+soilalbedo soil_albedo
+soilpor_size_index soil_por_size_index
+soilpsi_air_entry soil_psi_air_entry
+soilsoilc soil_soilc
+soilomdecay soil_omdecay
+xMAP xmap
+yMAP ymap
+demMAP dem
+slopeMap slope
+aspectMAP aspect
+twiMAP wetness_index
+whorizonMAP west_180
+ehorizonMAP east_000
+isohyetMAP isohyet
+rowMap rowmap
+colMap colmap
+drainMap drain
+impFracMAP impFrac
+forestFracMAP forestFrac
+tree1StratumID tree1StratumID
+tree1FFrac tree1FFrac
+tree1LAI tree1LAI
+tree2StratumID decidious
+tree2FFrac decidious_FFrac
+tree2LAI decidious_LAI
+shrubFracMAP shrubFrac
+shrub1StratumID shurb
+shrub1FFrac shurb_FFrac
+shrub1LAI shurb_LAI
+grassFracMAP lawnFrac
+grass1StratumID grass1StratumID
+grass1FFrac grass1FFrac
+grass1LAI grass1LAI
+
+streamMap str
+streamFullExtension strExt
