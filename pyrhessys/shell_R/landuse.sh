@@ -1,11 +1,11 @@
 #!/bin/bash
 grassCMD='grass'
 ### setup GRASS dataset
-PROJDIR='.' # full path to the project location;
-EPSGCODE=$1 # need to (manually) lookup the EPSG code for NAD83 UTM ##N for the catchment
-RESOLUTION=$2 #spatial resolution (meters) of the grids
-RHESSysNAME=$3 # e.g., rhessys_baisman10m
-GISDBASE="$PROJDIR"/$4
+PROJDIR=$1 # full path to the project location;
+EPSGCODE=$2 # need to (manually) lookup the EPSG code for NAD83 UTM ##N for the catchment
+RESOLUTION=$3 #spatial resolution (meters) of the grids
+RHESSysNAME=$4 # e.g., rhessys_baisman10m
+GISDBASE="$PROJDIR"/$5
 LOCATION_NAME="$RHESSysNAME"
 LOCATION="$GISDBASE"/$LOCATION_NAME
 MAPSET=PERMANENT
