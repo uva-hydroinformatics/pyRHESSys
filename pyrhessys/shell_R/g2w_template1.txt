@@ -1,14 +1,14 @@
-projdir /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents
-outputWorldfile /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/worldfiles/worldfile.csv 1
-outputWorldfileHDR /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/worldfiles/worldfile.hdr 1
-outputDefs /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/defs 1
-outputSurfFlow /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/flows/surfflow.txt 1
-outputSubFlow /home/jovyan/work/Downloads/43b192d8ae4a4261b760127a7edc1bd9/43b192d8ae4a4261b760127a7edc1bd9/data/contents/model/flows/subflow.txt 1
+projdir {DIR}
+outputWorldfile {DIR}/model/worldfiles/worldfile.csv 1
+outputWorldfileHDR {DIR}/model/worldfiles/worldfile.hdr 1
+outputDefs {DIR}/model/defs 1
+outputSurfFlow {DIR}/model/flows/surfflow.txt 1
+outputSubFlow {DIR}/model/flows/subflow.txt 1
 vegCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/vegCollection.csv"
 soilCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/soilCollection.csv"
 lulcCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/lulcCollectionEC.csv"
 stationID 101
-stationFile clim/cwt.base
+stationFile {DIR}/model/clim/cwt.base
 basinMap basin
 hillslopeMap hill
 zoneMAP zone_cluster
@@ -45,10 +45,10 @@ rowMap rowmap
 colMap colmap
 drainMap drain
 impFracMAP impFrac
-forestFracMAP forestFrac
-tree1StratumID tree1StratumID
-tree1FFrac tree1FFrac
-tree1LAI tree1LAI
+forestFracMAP forestFrac_community
+tree1StratumID evergreen
+tree1FFrac evergreen_Frac
+tree1LAI evergreen_LAI
 tree2StratumID decidious
 tree2FFrac decidious_FFrac
 tree2LAI decidious_LAI
