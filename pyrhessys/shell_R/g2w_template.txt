@@ -45,7 +45,7 @@ rowMap rowmap
 colMap colmap
 drainMap drain
 impFracMAP impFrac
-forestFracMAP forestFrac_community
+forestFracMAP forestFrac
 tree1StratumID evergreen
 tree1FFrac evergreen_Frac
 tree1LAI evergreen_LAI
