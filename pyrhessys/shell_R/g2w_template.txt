@@ -8,7 +8,7 @@ vegCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/
 soilCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/soilCollection.csv"
 lulcCollection "https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/lulcCollectionEC.csv"
 stationID 101
-stationFile {DIR}/model/clim/cwt.base
+stationFile clim/cwt.base
 basinMap basin
 hillslopeMap hill
 zoneMAP zone_cluster
