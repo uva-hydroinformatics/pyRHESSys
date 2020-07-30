@@ -28,7 +28,3 @@ $grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="shurb_L
 $grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="grass1StratumID = if(lawnFrac>0,3,null())"
 $grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="grass1FFrac = if(lawnFrac>0,1.0,null())"
 $grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="grass1LAI = if(lawnFrac>0,1.5,null())"
-
-$grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="tree1StratumID = if(forestFrac>0,102,null())"
-$grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="tree1FFrac = if(forestFrac>0,1.0,null())"
-$grassCMD "$LOCATION"/"$MAPSET" --exec r.mapcalc --overwrite expression="tree1LAI = if(forestFrac>0,4.0,null())"
