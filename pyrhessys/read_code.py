@@ -35,5 +35,10 @@ LULC_NLCD_URBAN_CATCHMENT = pkg_resources.resource_filename(
 G2W_TEMPLATE1 = pkg_resources.resource_filename(
         __name__, 'shell_R/g2w_template1.txt') 
 LANDUSE = pkg_resources.resource_filename(
-        __name__, 'shell_R/landuse.sh') 		
-		
+        __name__, 'shell_R/landuse.sh') 	
+LULC_NLCD_DIFFICULT_RUN_CATCHMENT = pkg_resources.resource_filename(
+        __name__, 'shell_R/lulc_30m_NLCD_difficult_run_catchment.csv')  		
+G2W_TEMPLATE_DIFFICULT_RUN = pkg_resources.resource_filename(
+        __name__, 'shell_R/g2w_template_difficult_run.txt') 
+LUFRAC_DIFFICULT_RUN = pkg_resources.resource_filename(
+        __name__, 'shell_R/landuse_fractions_difficult_run.sh') 		
