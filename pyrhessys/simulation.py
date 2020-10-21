@@ -24,10 +24,10 @@ with open(FILE, 'r') as f:
 class Simulation():
     """The simulation object provides a wrapper for RHESSys simulations"""
 
-    def __init__(self, executable, path, run_suffix='rhessys_run', initialize=True):
+    def __init__(self, executable, project_path, run_suffix='rhessys_run', initialize=True, config_dir='.pyrhessys'):
         """Initialize a new simulation object"""
         self.executable = executable
-        self.path = path
+        self.path = project_path
         self.clim = self.path + '/clim'
         self.defs = self.path + '/defs'
         self.flows = self.path + '/flows'
@@ -37,9 +37,10 @@ class Simulation():
         self.worldfiles = self.path + '/worldfiles'
         self.parameters = PARAMETER_META
         self.file_name = FILE_NAME
-        self.path = path
+        self.project_path = Path(os.path.abspath(os.path.realpath(project_path)))
+        self.config_path = self.project_path / config_dir
         self.plotting = Plotting(self.obs)
-        self.input_ts = TimeSeries(path)
+        self.input_ts = TimeSeries(project_path)
         self.status = 'Uninitialized'
         self.stdout = None
         self.stderr = None
@@ -72,8 +73,8 @@ class Simulation():
             patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
         else:
             print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
-        print(rhessys_run_cmd + patch_cmd)
-        return rhessys_run_cmd + patch_cmd
+        print(rhessys_run_cmd)
+        return rhessys_run_cmd
 
     def _run_local(self, run_suffix, processes=1, progress=None):
         """Start a local simulation"""
