@@ -23,10 +23,10 @@ class Ensemble(object):
     changing the decisions or parameters of a given run.
     '''
 
-    def __init__(self, executable: str,configuration: dict,
+    def __init__(self, executable: str, configuration: dict,
                  path: str=None, num_workers: int=1,
                  threads_per_worker: int=OMP_NUM_THREADS,
-                 scheduler: str=None):
+                 scheduler: str=None, client: Client=None):
         """
         Create a new Ensemble object. The API mirrors that of the
         Simulation object.
@@ -38,19 +38,23 @@ class Ensemble(object):
         self.num_workers: int = num_workers
         self.simulations: dict = {}
         self.submissions: list = []
-        #self.start_date = PARAMETER_META['start_date']
-        #self.end_date = PARAMETER_META['end_date']
         self.parameters = PARAMETER_META
 
         # Try to get a client, and if none exists then start a new one
-        try:
-            self._client = get_client()
-            # Start more workers if necessary:
+        if client:
+            self._client = client
             workers = len(self._client.get_worker_logs())
             if workers <= self.num_workers:
                 self._client.cluster.scale(workers)
-        except ValueError:
-            self._client = Client(n_workers=self.num_workers,
+        else:
+            try:
+                self._client = get_client()
+                # Start more workers if necessary:
+                workers = len(self._client.get_worker_logs())
+                if workers <= self.num_workers:
+                    self._client.cluster.scale(workers)
+            except ValueError:
+                self._client = Client(n_workers=self.num_workers,
                                   threads_per_worker=threads_per_worker)
         self._generate_simulation_objects()
 
@@ -59,18 +63,11 @@ class Ensemble(object):
         Create a mapping of configurations to the simulation objects.
         """
         self.name_list = []
-        if self.path:
-            for name, config in self.configuration.items():
-                self.name = name
-                self.name_list.append(self.name)
-                self.simulations[name] = Simulation(
-                    self.executable, self.path, run_suffix=self.name)
-        else:
-            for name, config in self.configuration.items():
-                assert config['file_manager'] is not None, \
-                    "No filemanager found in configuration or Ensemble!"
-                self.simulations[name] = Simulation(
-                    self.executable, config['file_manager'], run_suffix=self.name)
+        for name, config in self.configuration.items():
+            self.name = name
+            self.name_list.append(self.name)
+            self.simulations[name] = Simulation(
+                self.executable, self.path, run_suffix=self.name)
 
     def _generate_coords(self):
         """
@@ -97,7 +94,7 @@ class Ensemble(object):
             sim_output.append(plot_data)
         return sim_output
 
-    def start(self, run_option: str):
+    def start(self, run_option: str, prerun_cmds: list=None):
         """
         Start running the ensemble members.
 
@@ -114,7 +111,7 @@ class Ensemble(object):
             self.submissions.append(self._client.submit(
                 _submit, s, n, run_option, config))
 
-    def run(self, run_option: str, monitor: bool=True):
+    def run(self, run_option: str, prerun_cmds=None, monitor: bool=True):
         """
         Run the ensemble
 
@@ -127,7 +124,7 @@ class Ensemble(object):
         monitor:
             Whether to halt operation until runs are complete
         """
-        self.start(run_option)
+        self.start(run_option, prerun_cmds)
         if monitor:
             return self.monitor()
         else:
@@ -155,7 +152,7 @@ class Ensemble(object):
                 other.append(n)
         return {'success': success, 'error': error, 'other': other}
 
-    def rerun_failed(self, run_option: str, monitor: bool=True):
+    def rerun_failed(self, run_option: str, prerun_cmds=None, monitor: bool=True):
         """
         Try to re-run failed simulations.
 
@@ -173,9 +170,9 @@ class Ensemble(object):
         for n in run_summary['error']:
             config = self.configuration[n]
             s = self.simulations[n]
+            s.reset()
             self.submissions.append(self._client.submit(
-                _submit, s, n, run_option, config))
-            time.sleep(2.0)
+                _submit, s, n, run_option, prerun_cmds, config))
         if monitor:
             return self.monitor()
         else:
