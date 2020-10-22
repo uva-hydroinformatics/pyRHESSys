@@ -24,10 +24,10 @@ with open(FILE, 'r') as f:
 class Simulation():
     """The simulation object provides a wrapper for RHESSys simulations"""
 
-    def __init__(self, executable, path, run_suffix='rhessys_run', initialize=True):
+    def __init__(self, executable, project_path, run_suffix='rhessys_run', initialize=True, config_dir='.pyrhessys'):
         """Initialize a new simulation object"""
         self.executable = executable
-        self.path = path
+        self.path = project_path
         self.clim = self.path + '/clim'
         self.defs = self.path + '/defs'
         self.flows = self.path + '/flows'
@@ -37,9 +37,10 @@ class Simulation():
         self.worldfiles = self.path + '/worldfiles'
         self.parameters = PARAMETER_META
         self.file_name = FILE_NAME
-        self.path = path
+        self.project_path = Path(os.path.abspath(os.path.realpath(project_path)))
+        self.config_path = self.project_path / config_dir
         self.plotting = Plotting(self.obs)
-        self.input_ts = TimeSeries(path)
+        self.input_ts = TimeSeries(project_path)
         self.status = 'Uninitialized'
         self.stdout = None
         self.stderr = None

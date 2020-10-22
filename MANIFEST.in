@@ -1,2 +1,4 @@
 include pyrhessys/meta/*
-include pyrhessys/shell_R/*
+include pyrhessys/r_code/*
+include pyrhessys/sh_code/*
+include pyrhessys/template/*

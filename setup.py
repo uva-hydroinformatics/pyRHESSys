@@ -28,7 +28,8 @@ setup(name='pyRHESSys',
           'fiona',
           'cartopy',
           'shapely',
-          'geoviews'
+          'geoviews',
+          'sklearn'
           ],
       include_package_data=True,
       test_suite='pyRHESSys.tests')
