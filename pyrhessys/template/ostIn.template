@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------
-# Ostrich configuration file template for pysumma calibration
+# Ostrich configuration file template for pyrhessys calibration
 # -----------------------------------------------------------------
-#   This file is automatically populated by pysumma and provides
+#   This file is automatically populated by pyrhessys and provides
 #   a high level interface to the OSTRICH optimization package.
 #   We do not implement many of the available options for the
 #   sake of ease of use (and implementation).

@@ -1,5 +1,5 @@
 #!$pythonPath
-import pysumma as ps
+import pyrhessys as pr
 import xarray as xr
 import shutil
 import os

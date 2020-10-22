@@ -41,12 +41,12 @@ class Ostrich():
     package, though more metrics can be implemmented quite easily.
     A basic workflow for this object is:
         ::
-        import pysumma as ps
-        summa_exe = './summa.exe'
+        import pyrhessys as pr
+        rhessys_exe = './rhessys.exe'
         ostrich_exe = './ostrich.exe'
-        file_manager = './file_manager.txt'
+        project_path = 'project_directory'
         python_exe = '/pool0/data/andrbenn/.conda/all/bin/python'
-        ostrich = ps.Ostrich(ostrich_exe, summa_exe, file_manager, python_path=python_exe)
+        ostrich = ps.Ostrich(ostrich_exe, rhessys_exe, project_path, python_path=python_exe)
         ostrich.calib_params = [
             ps.OstrichParam('paramName', starValue, (minValue, maxValue)),
         ]
@@ -62,19 +62,19 @@ class Ostrich():
     python_path:
         Path to Python executable used for the ``run_script``
     summa:
-        Path to the SUMMA executable
+        Path to the RHESSys executable
     template:
         OSTRICH configuration file template
     save_template:
         Template for script to save best parameters
     run_template:
-        Template for script to run and evaluate SUMMA
+        Template for script to run and evaluate RHESSys
     config_path:
         Path to location of calibration runs/logs
     simulation:
-        pysumma Simulation object used as template
+        pyrhessys Simulation object used as template
     file_manager:
-        File manager file for SUMMA simulation
+        File manager file for RHESSys simulation
     seed:
         Random seed for calibration
     errval:
@@ -279,11 +279,11 @@ class Ostrich():
 
 class OstrichParam():
     """
-    Definition of a SUMMA parameter to be optimized by OSTRICH
+    Definition of a RHESSys parameter to be optimized by OSTRICH
     Parameters
     ----------
     realname:
-        Parameter name as seen by SUMMA
+        Parameter name as seen by RHESSys
     weightname:
         Parameter name as seen by OSTRICH
     value:
