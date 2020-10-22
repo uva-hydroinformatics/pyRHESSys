@@ -17,6 +17,6 @@ patch_lulc_extraction = pkg_resources.resource_filename(
 lulcFrac_write2gis = pkg_resources.resource_filename(
         __name__, 'r_code/lulcFrac_write2gis.R')   
 g2world_def_flow = pkg_resources.resource_filename(
-        __name__, 'shell_R/g2world_def_flow.R')
+        __name__, 'r_code/g2world_def_flow.R')
 g2world = pkg_resources.resource_filename(
-        __name__, 'shell_R/g2world.R')
+        __name__, 'r_code/g2world.R')
