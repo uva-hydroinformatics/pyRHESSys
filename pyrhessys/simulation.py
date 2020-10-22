@@ -87,7 +87,6 @@ class Simulation():
 
     def start(self, run_option,  run_suffix='rhessys_run', processes=1, progress=None):
         """Run a RHESSys simulation"""
-        #TODO: Implement running on hydroshare here
         self.run_suffix = run_suffix
         if run_option == 'local':
             self._run_local(run_suffix, processes, progress)

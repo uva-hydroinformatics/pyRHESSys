@@ -19,7 +19,7 @@ with open(PARAMETER, 'r') as f:
 
 class Ensemble(object):
     '''
-    Ensembles represent an multiple SUMMA configurations based on
+    Ensembles represent an multiple RHESSys configurations based on
     changing the decisions or parameters of a given run.
     '''
 
@@ -101,7 +101,7 @@ class Ensemble(object):
         Parameters
         ----------
         run_option:
-            The run type. Should be either 'local' or 'docker'
+            The run type. Should be either 'local' 
         prerun_cmds:
             A list of preprocessing commands to run
         """
@@ -118,9 +118,9 @@ class Ensemble(object):
         Parameters
         ----------
         run_option:
-            Where to run the simulation. Can be ``local`` or ``docker``
+            Where to run the simulation. Can be ``local`` 
         prerun_cmds:
-            A list of shell commands to run before running SUMMA
+            A list of shell commands to run before running RHESSys
         monitor:
             Whether to halt operation until runs are complete
         """
@@ -161,7 +161,7 @@ class Ensemble(object):
         run_option:
             Where to run the simulation. Can be ``local`` or ``docker``
         prerun_cmds:
-            A list of shell commands to run before running SUMMA
+            A list of shell commands to run before running RHESSys
         monitor:
             Whether to halt operation until runs are complete
         """
