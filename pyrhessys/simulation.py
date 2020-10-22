@@ -73,8 +73,8 @@ class Simulation():
             patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
         else:
             print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
-        print(rhessys_run_cmd)
-        return rhessys_run_cmd
+        print(rhessys_run_cmd + patch_cmd)
+        return rhessys_run_cmd + patch_cmd
 
     def _run_local(self, run_suffix, processes=1, progress=None):
         """Start a local simulation"""
