@@ -165,7 +165,7 @@ class Simulation():
         parallel_run_cmd2 = []
         my_dict = {'gw1': self.parameters['gw1'], 'gw2': self.parameters['gw2'], 's1': self.parameters['s1'], 's2': self.parameters['s2'], 
                 's3': self.parameters['s3'], 'snowEs': self.parameters['snowEs'], 'snowTs': self.parameters['snowTs'], 
-                'sv1': self.parameters['sv1'], 'sv2': self.parameters['sv2'], 'svalt1': self.parameters['gw1'], 'svalt2': self.parameters['gw1']}
+                'sv1': self.parameters['sv1'], 'sv2': self.parameters['sv2'], 'svalt1': self.parameters['svalt1'], 'svalt2': self.parameters['svalt2']}
 
         for i, k in enumerate(parameter):
             for j in parameter[i]:
