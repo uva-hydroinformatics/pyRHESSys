@@ -37,6 +37,7 @@ class Plotting:
 		plt.xticks(fontsize=18)
 		plt.yticks(fontsize=18)
 		ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=10)
+		plt.savefig("figure.png")
 
 	def ts_plot_obs(self, sim_data, sim_output_variable, sim_label, obs_data, obs_variable: str="", obs_label: str="", pre_trim: int=0, post_trim: int=-1):
 		self.filepath
@@ -52,6 +53,7 @@ class Plotting:
 		plt.xticks(fontsize=18)
 		plt.yticks(fontsize=18)
 		ax.legend(loc='upper left', bbox_to_anchor=(1, 1), fontsize=10)
+		plt.savefig("figure.png")
 
 	def ensemble_plot(self, sim_data, name_list, num_config, sim_output_variable, pre_trim: int=0, post_trim: int=-1):
 		LINE_STYLES = ['solid', 'dashed', 'dashdot', 'dashdot', 'dotted']
@@ -73,6 +75,7 @@ class Plotting:
 		ax.grid('on')
 		fig.legend(labels=name_list, bbox_to_anchor=(0.82, 0.82))
 		plt.show()
+		plt.savefig("figure.png")
 
 	def ensemble_obs_plot(self, sim_data, name_list, num_config, sim_output_variable, obs_data, obs_variable, pre_trim: int=0, post_trim: int=-1):
 		LINE_STYLES = ['solid', 'dashed', 'dashdot', 'dashdot', 'dotted']
@@ -95,6 +98,7 @@ class Plotting:
 		ax.grid('on')
 		fig.legend(labels=name_list, bbox_to_anchor=(0.82, 0.82))
 		plt.show()
+		plt.savefig("figure.png")
 	#def daily_patch_map(netcdf, variable, timestep):
     	# Convert the data from an xarray dataset to a pandas dataframe 
     	# This is necessary for geoviews to be able to plot it
