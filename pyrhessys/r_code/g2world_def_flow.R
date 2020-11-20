@@ -1,7 +1,7 @@
 ## single basin
 ## sub-patch/grid setting
 #----------------------------------------------------------------------------------------------
-source('https://raw.githubusercontent.com/laurencelin/Date_analysis/master/LIB_misc.r')
+source('LIB_misc.R')
 	options(scipen=999)
     arg = commandArgs(T)
 
@@ -107,7 +107,7 @@ source('https://raw.githubusercontent.com/laurencelin/Date_analysis/master/LIB_m
 		
 	## user provides a customized vegetation.csv containing all vegetation vegParameters.
     if(length(arg)==5){
-        ParamFileName= ifelse(arg[2]=='default'|arg[2]=='NA'|arg[2]=='na'|arg[2]=='.','https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/vegCollection.csv', arg[2])
+        ParamFileName= ifelse(arg[2]=='default'|arg[2]=='NA'|arg[2]=='na'|arg[2]=='.','vegCollection.csv', arg[2])
     }else{
         ParamFileName = templateACTION$vegCollection[1];
     }
@@ -119,7 +119,7 @@ source('https://raw.githubusercontent.com/laurencelin/Date_analysis/master/LIB_m
 	
 
     if(length(arg)==5){
-        ParamFileName= ifelse(arg[3]=='default'|arg[3]=='NA'|arg[3]=='na'|arg[3]=='.','https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/soilCollection.csv', arg[3])
+        ParamFileName= ifelse(arg[3]=='default'|arg[3]=='NA'|arg[3]=='na'|arg[3]=='.','soilCollection.csv', arg[3])
     }else{
         ParamFileName = templateACTION$soilCollection[1];
     }
@@ -129,7 +129,7 @@ source('https://raw.githubusercontent.com/laurencelin/Date_analysis/master/LIB_m
 	soilParam_len = ncol(soilParam)
 	
     if(length(arg)==5){
-        ParamFileName= ifelse(arg[4]=='default'|arg[4]=='NA'|arg[4]=='na'|arg[4]=='.','https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/lulcCollectionEC.csv', arg[4])
+        ParamFileName= ifelse(arg[4]=='default'|arg[4]=='NA'|arg[4]=='na'|arg[4]=='.','lulcCollectionEC.csv', arg[4])
     }else{
         ParamFileName = templateACTION$lulcCollection[1];
     }
@@ -139,13 +139,13 @@ source('https://raw.githubusercontent.com/laurencelin/Date_analysis/master/LIB_m
 	lulcParam_len = ncol(lulcParam)
 
 
-    ParamFileName = ifelse(is.null(templateACTION$hillCollection[1]),'https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/hillCollection.csv',templateACTION$hillCollection[1])
+    ParamFileName = ifelse(is.null(templateACTION$hillCollection[1]),'hillCollection.csv',templateACTION$hillCollection[1])
     hillParam = read.csv(ParamFileName,skip=4,header=T,stringsAsFactors=F) #<<------
     hillParamCOL = cbind(as.numeric(unique(hillParam[1,3:ncol(hillParam)])), 3:ncol(hillParam));
     colnames(hillParamCOL) = c('hillID','hillDefIndex')
     hillParam_len = ncol(hillParam)
 
-    ParamFileName = ifelse(is.null(templateACTION$zoneCollection[1]),'https://raw.githubusercontent.com/laurencelin/GIS2RHESSys/master/zoneCollection.csv',templateACTION$zoneCollection[1])
+    ParamFileName = ifelse(is.null(templateACTION$zoneCollection[1]),'zoneCollection.csv',templateACTION$zoneCollection[1])
     zoneParam = read.csv(ParamFileName,skip=4,header=T,stringsAsFactors=F) #<<------
     zoneParamCOL = cbind(as.numeric(unique(zoneParam[1,3:ncol(zoneParam)])), 3:ncol(zoneParam));
     colnames(zoneParamCOL) = c('zoneID','zoneDefIndex')
