@@ -2,10 +2,11 @@ from setuptools import setup, find_packages
 import versioneer
 
 setup(name='pyrhessys',
-      version=versioneer.get_version(),
-      cmdclass=versioneer.get_cmdclass(),
+      version = '0.0.2',
+      #version=versioneer.get_version(),
+      #cmdclass=versioneer.get_cmdclass(),
       description='an Object-Oriented Python wrapper for the RHESSys model',
-      url='https://github.com/DavidChoi76/pyRHESSys.git',
+      url='https://github.com/DavidChoi76/pyrhessys.git',
       author='YoungDon Choi', 
       author_email='choiyd1115@gmail.com',
       license='MIT',
