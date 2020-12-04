@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 #import versioneer
 
 setup(name='pyrhessys',
-      version = '0.0.3',
+      version = '0.0.4',
       description='an Object-Oriented Python wrapper for the RHESSys model',
       url='https://github.com/DavidChoi76/pyrhessys.git',
       author='YoungDon Choi', 
