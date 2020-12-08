@@ -24,3 +24,9 @@ elevation_analysis = pkg_resources.resource_filename(
         __name__, 'r_code/elevation_analysis.R')
 road_storm_drainage_outlet = pkg_resources.resource_filename(
         __name__, 'r_code/road_storm_drainage_outlet.R')
+LIB_misc = pkg_resources.resource_filename(
+        __name__, 'r_code/LIB_misc.R')
+ssurgo_extraction = pkg_resources.resource_filename(
+        __name__, 'r_code/ssurgo_extraction.R')
+ssurgo_soiltexture2gis = pkg_resources.resource_filename(
+        __name__, 'r_code/ssurgo_soiltexture2gis.R')
