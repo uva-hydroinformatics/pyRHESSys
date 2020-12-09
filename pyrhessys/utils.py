@@ -30,7 +30,7 @@ def replace_string(file, current_string, new_string):
     m=f1.replace(current_string,new_string)
     f2.write(m)
 
-def complie(file_path, version_option="rhessys5.20.0.develop"):
+def complie(file_path, version_option="rhessysEC.7.2"):
     if version_option:
         complie_RHESSys = 'cd ' + file_path +'/RHESSysEastCoast;make'
         subprocess.run(complie_RHESSys, shell=True)

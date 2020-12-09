@@ -4,13 +4,6 @@ import numpy as np
 import pandas as pd
 import json
 import pkg_resources
-import seaborn as sns
-import cartopy
-import geoviews as gv
-import geopandas as gpd
-import holoviews as hv
-import pandas as pd
-import xarray as xr
 
 OUTPUT = pkg_resources.resource_filename(
         __name__, 'meta/output_variables.json')
