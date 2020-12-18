@@ -23,6 +23,7 @@ dependencies:
   - jupyter
   - imageio
   - pip
+  - rhessysec
   - pip:
     - hs_restclient
     - hydroeval

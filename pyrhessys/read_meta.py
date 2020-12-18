@@ -20,3 +20,5 @@ zoneCollection = pkg_resources.resource_filename(
         __name__, 'meta/zoneCollection.csv')
 hillCollection = pkg_resources.resource_filename(
         __name__, 'meta/hillCollection.csv')
+lulc_1m_va = pkg_resources.resource_filename(
+        __name__, 'meta/lulc_1m_va.csv')
