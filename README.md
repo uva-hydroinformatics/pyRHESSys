@@ -5,7 +5,7 @@
 | pyRHESSys Tutorial      |[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DavidChoi76/rhessys_binder_test.git/master)
 | pyRHESSys Documentation      | [![Documentation Status](http://readthedocs.org/projects/pyrhessys/badge/?version=latest)](http://pyrhessys.readthedocs.io/en/latest/?badge=latest) |
 
-pyRHESSys (Python-the Regional Hydro-Ecologic Simulation System) is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis.
+pyrhessys (Python-the Regional Hydro-Ecologic Simulation System) is an Object-Oriented Python wrapper for the model input creation and manipulation, model execution, model output visualization and analysis.
 
 * [RHESSys Website at GitHub ](https://github.com/RHESSys)
 * [RHESSys Website - Naomi Tague ](http://fiesta.bren.ucsb.edu/~rhessys/)
@@ -16,7 +16,7 @@ pyrhessys provides methods for:
  - Get and set model input
  - Run the RHESSys Model on local computers and scientific cyberinfrastructures (especially, CyberGIS-Jupyter for water) 
  - Visualize RHESSys outputs (In progress)
- - Be integrated with pyRHESSys with Jupyter Notebook environment 
+ - Be integrated with pyrhessys with Jupyter Notebook environment 
  - Interact with Hydorshare to download RHESSys test cases and upload RHESSys outputs
  - Create model input using GRASS GIS and R library (in progress)
  - Automate model calibration or sensitivity analysis (Future work)
@@ -30,7 +30,7 @@ To install via `pip` use:
 
 ```pip install pyrhessys```
 
-rhessys can be installed from 'conda'
+RHESSys can be installed from 'conda' (in progress)
 
 To install via 'conda' use:
 
@@ -61,4 +61,3 @@ running:
 
   Copyright (C) 2020 pyrhessys Developers
   YoungDon Choi <choiyd1115@gmail.com or yc5ef@virginia.edu>
- 
