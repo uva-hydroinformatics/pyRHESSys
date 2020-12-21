@@ -73,7 +73,7 @@ class Simulation():
             patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
         else:
             print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
-        print(rhessys_run_cmd + patch_cmd)
+        #print(rhessys_run_cmd + patch_cmd)
         return rhessys_run_cmd + patch_cmd
 
     def _run_local(self, run_suffix, processes=1, progress=None):
@@ -83,6 +83,39 @@ class Simulation():
         #print(self.process.communicate())
         #output = self.process.communicate()[0].decode('utf-8')
         #print(output)
+        self.status = 'Running'
+
+    def _run_docker(self, run_suffix, processes=1, progress=None):
+        """Start a docker simulation"""
+        #run_cmd = self._gen_rhessys_cmd(run_suffix, processes, progress)
+        #run_cmd = run_cmd.replace(self.executable, 'cd /pyrhessys/RHESSysEastCoast; ./rhessysEC.7.2')
+
+        rhessys_run_cmd = ''.join(['cd /pyrhessys/RHESSysEastCoast; ./rhessysEC.7.2 -st {} -ed {}'.format(self.parameters['start_date'], self.parameters['end_date']),
+                           ' -b -gwtoriparian -t {}{}'.format(self.tecfiles, self.file_name['tecfiles']),
+                           ' -w {}{} -whdr {}{}'.format(self.worldfiles, self.file_name['world'], self.worldfiles, self.file_name['world_hdr']),
+                           ' -r {}{} {}{}'.format(self.flows, self.file_name['flows_sub'], self.flows, self.file_name['flows_surf']),
+                           ' -pre {}/{} -gw {} {} -s {} {} {}'.format(self.output, run_suffix, self.parameters['gw1'], self.parameters['gw2'], self.parameters['s1'], self.parameters['s2'], self.parameters['s3']),     
+                           ' -snowEs {} -snowTs {} -sv {} {} -svalt {} {}'.format(self.parameters['snowEs'], self.parameters['snowTs'], self.parameters['sv1'], self.parameters['sv2'], self.parameters['svalt1'], self.parameters['svalt2'])                          
+                          ])
+
+        if self.parameters['locationid'] == "0" :
+            patch_cmd = ""
+        elif self.parameters['locationid'] == "1" :
+            patch_cmd = " -p"
+        elif self.parameters['locationid'] == "2" :
+            patch_cmd = " -p {} {} {} {}".format(self.parameters['basin_id'], self.parameters['hillslope_id'], self.parameters['zone_id'], self.parameters['patch_id'])
+        else:
+            print(" set locationid: 0-No use location ID, 1-Use every location ID, 2-Use certain ID")
+        
+        self.rhessys_run = rhessys_run_cmd + patch_cmd
+
+        cmd = ''.join(['docker run -v {}:{}'.format(self.path, self.path),
+                       " --entrypoint '/bin/bash' ",
+                       self.executable,
+                       '  -c "',
+                       self.rhessys_run, '"'])
+        print(cmd)
+        self.process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         self.status = 'Running'
 
     def start(self, run_option,  run_suffix='rhessys_run', processes=1, progress=None):
