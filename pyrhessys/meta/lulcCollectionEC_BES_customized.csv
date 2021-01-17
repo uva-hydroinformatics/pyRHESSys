@@ -1,0 +1,25 @@
+,placeholder,,,,,
+,placeholder,,,,,
+,placeholder,,with dog poop,,,
+,placeholder,old farm period,current urbanized,old farm period,old farm period,old farm period
+order,name,setting1,setting5,setting2,setting3,setting4
+1,landuse_default_ID,11,10,12,14,16
+2,detention_store_size (m/impFrac),0.001,0.001,0.001,0.001,0.001
+3,pondDepth (m/pondFrac),1.5,1.5,1.5,1.5,1.5
+4,fertilizer_NH4 (kg/m2/application),0,0,0,0,0
+5,fertilizer_NO3 (kg/m2/application),0.004394185,0.0029225,0.004833604,0.003075929,0.003075929
+6,fertilizer_freq (day),45,90,45,45,45
+7,irrigation (mm/day),4,4,4,4,4
+8,septic_NO3_load (kgN/year/capita),4.989516667,5.40769697,4.989516667,4.989516667,4.989516667
+9,septic_water_load (m3/year/capita),121.5873333,121.5873333,121.5873333,121.5873333,121.5873333
+10,numPPLinHouse,2.4,3.3,2.4,2.4,2.4
+11,sewerDiamInch,8.5,8.5,8.5,8.5,8.5
+12,sewerDensityMileAcre,0,0,0,0,0
+13,sewerDepthft,11,11,11,11,11
+14,MaxExf_gpimd,9061,9061,9061,9061,9061
+15,MaxExf_Percent,0.491,0.491,0.491,0.491,0.491
+16,emptyPercent,0.25,0.25,0.25,0.25,0.25
+17,sewerNO3mgNL,2.5,2.5,2.5,2.5,2.5
+18,sewerNH4mgNL,2.5,2.5,2.5,2.5,2.5
+19,sewerDONmgNL,2.5,2.5,2.5,2.5,2.5
+20,sewerDOCmgCL,2.5,2.5,2.5,2.5,2.5
