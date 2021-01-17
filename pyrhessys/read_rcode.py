@@ -32,3 +32,5 @@ ssurgo_extraction = pkg_resources.resource_filename(
         __name__, 'r_code/ssurgo_extraction.R')
 ssurgo_soiltexture2gis = pkg_resources.resource_filename(
         __name__, 'r_code/ssurgo_soiltexture2gis.R')
+well_septicdrainfield_irrigationlaw_round_rooftops = pkg_resources.resource_filename(
+        __name__, 'r_code/well_septicDrainField_IrrigrationLawn_around_rooftops.R')
