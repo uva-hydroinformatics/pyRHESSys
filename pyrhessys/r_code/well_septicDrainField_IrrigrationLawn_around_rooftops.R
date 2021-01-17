@@ -77,7 +77,8 @@ write.csv(roof_drain_table[,c(1:3,5)],arg[8],row.names=F,quote=F)
 irrigrationTable = as.data.frame(do.call(rbind,lapply(seq_len(dim(roof_drain_table)[1]),function(ii){
     
     source_patchID = as.numeric(roof_drain_table[ii,2])
-    stringVar = unlist(strsplit(roof_drain_table[ii,4],'_',fixed=T))
+    irrigration_value <- as.character(roof_drain_table[ii,4])
+    stringVar = unlist(strsplit(irrigration_value,'_',fixed=T))
     if(length(stringVar)>1){
         patchID = as.numeric(unlist(strsplit(stringVar[1],';',fixed=T)))
         patchIrriFrac = as.numeric(unlist(strsplit(stringVar[2],';',fixed=T)))
