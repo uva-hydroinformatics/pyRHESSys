@@ -21,7 +21,9 @@ def station_info(st_id):
     r_list = [txt.split("\t") for txt in resp if "#" not in txt]
     r_dict = [dict(zip(r_list[0], st)) for st in r_list[2:]]
     site_list.append(pd.DataFrame.from_dict(r_dict).dropna())
-    return site_list[0]
+    sites = site_list[0]
+    sites = sites.drop(sites[sites.alt_va == ""].index)
+    return sites
 
 def get_streamflow(st_id, start_date, end_date):
     payload = {
