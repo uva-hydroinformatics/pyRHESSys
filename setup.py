@@ -28,7 +28,8 @@ setup(name='pyrhessys',
           'sklearn',
           'pyDOE',
           'ipyplot',
-          'bs4'
+          'bs4',
+          'cdo-api-py'
           ],
        extras_require={'visualization': [
           'geopandas',
