@@ -10,13 +10,15 @@ def station_info(st_id):
     query = {"sites": ",".join(st_id)}
     site_list = []
     output_type = [{"outputDataTypeCd": "dv"}]
-    payload = {
+    for t in output_type:
+            payload = {
                 **query,
+                **t,
                 "format": "rdb",
                 "parameterCd": "00060",
                 "siteStatus": "all",
                 "hasDataTypeCd": "dv",
-               }
+            }
     resp = Session().post(f"{url}/site", payload).text.split("\n")
     r_list = [txt.split("\t") for txt in resp if "#" not in txt]
     r_dict = [dict(zip(r_list[0], st)) for st in r_list[2:]]
