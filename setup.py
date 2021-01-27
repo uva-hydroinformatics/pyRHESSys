@@ -29,7 +29,8 @@ setup(name='pyrhessys',
           'pyDOE',
           'ipyplot',
           'bs4',
-          'cdo-api-py'
+          'cdo-api-py',
+          'wget',
           ],
        extras_require={'visualization': [
           'geopandas',
