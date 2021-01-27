@@ -24,3 +24,5 @@ lulc_1m_va = pkg_resources.resource_filename(
         __name__, 'meta/lulc_1m_va.csv')
 lulc_1m_chesapeake = pkg_resources.resource_filename(
         __name__, 'meta/lulc_1m_Chesapeake_Conservancy.csv')
+ssurgo_soil_map = pkg_resources.resource_filename(
+        __name__, 'meta/ssurgo_download_link.csv')
