@@ -2,7 +2,7 @@ name: pyrhessys
 channels:
   - conda-forge
 dependencies:
-  - python>=3.6
+  - python=3.7
   - xarray>=0.15.0
   - pandas
   - netcdf4>=1.2.5
@@ -23,8 +23,7 @@ dependencies:
   - jupyter
   - imageio
   - pip
-  - geoviews=1.6.6
-  - geoviews-core=1.6.6
+  - geoviews=1.8.1
   - holoviews=1.14.1   
   - pip:
     - hs_restclient
