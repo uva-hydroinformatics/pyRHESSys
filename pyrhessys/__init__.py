@@ -8,3 +8,4 @@ from .read_shellscript import *
 from .utils import *
 from .input_configure import *
 from .ostrich import Ostrich, OstrichParam
+from .usgs_data import *

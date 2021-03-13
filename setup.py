@@ -28,7 +28,9 @@ setup(name='pyrhessys',
           'sklearn',
           'pyDOE',
           'ipyplot',
-          'Bottleneck'
+          'bs4',
+          'cdo-api-py',
+          'wget',
           ],
        extras_require={'visualization': [
           'geopandas',
@@ -36,7 +38,7 @@ setup(name='pyrhessys',
           'cartopy',
           'shapely',
           'seaborn',
-          'geoviews',         
+          'geoviews'       
           ],},
       include_package_data=True,
       test_suite='pyrhessys.tests')
